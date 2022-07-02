@@ -16,7 +16,7 @@
       </Button>
       <VBox layoutX="236.0" layoutY="67.0" prefHeight="427.0" prefWidth="361.0">
          <children>
-            <Label fx:id="question" alignment="CENTER" prefHeight="70.0" prefWidth="371.0" text="2+2=?">
+            <Label fx:id="questionLbl" alignment="CENTER" prefHeight="70.0" prefWidth="371.0" text="2+2=?">
                <font>
                   <Font name="Roboto Black" size="36.0" />
                </font></Label>

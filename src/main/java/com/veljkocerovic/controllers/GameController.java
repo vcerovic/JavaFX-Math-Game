@@ -1,5 +1,6 @@
 package com.veljkocerovic.controllers;
 
+import com.veljkocerovic.models.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +14,13 @@ import java.util.Objects;
 
 public class GameController {
 
-    @FXML
-    private Label question;
+    public Label questionLbl;
 
-    public void init(){
+    @FXML
+    public void initialize(){
+        Question question = Question.getInstance();
+        question.generateQuestionAndAnswer();
+        questionLbl.textProperty().bindBidirectional(question.questionProperty());
 
     }
 
