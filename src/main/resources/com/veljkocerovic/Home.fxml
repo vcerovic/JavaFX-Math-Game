@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="594.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="594.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.SceneController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="261.0" layoutY="103.0" prefHeight="388.0" prefWidth="337.0">
          <children>
@@ -18,7 +17,7 @@
             </Label>
             <VBox alignment="CENTER" prefHeight="153.0" prefWidth="337.0">
                <children>
-                  <Button mnemonicParsing="false" text="PLAY">
+                  <Button mnemonicParsing="false" onAction="#switchToGameScene" text="PLAY">
                      <font>
                         <Font name="Roboto Bold" size="15.0" />
                      </font>
