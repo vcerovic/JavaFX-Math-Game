@@ -1,13 +1,22 @@
 package com.veljkocerovic.models;
 
+import com.veljkocerovic.utils.MathUtils;
 import javafx.beans.property.SimpleStringProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
+
+import static com.veljkocerovic.utils.MathUtils.getRandomNumber;
+
+@Getter
+@Setter
 public class Question {
 
     private static Question question_instance = null;
-
-    private final SimpleStringProperty question = new SimpleStringProperty(this, "question", "");
+    private SimpleStringProperty question = new SimpleStringProperty(this, "question", "");
     private int answer;
+    private ArrayList<Integer> answers;
 
     private Question() {
         generateQuestionAndAnswer();
@@ -18,6 +27,39 @@ public class Question {
             question_instance = new Question();
 
         return question_instance;
+    }
+
+
+    public void generateAnswers(){
+        answers = new ArrayList<>();
+        int randomSpot = MathUtils.getRandomNumber(0, 3);
+
+        for (int i = 0; i < 4; i++) {
+            if(randomSpot == i){
+                answers.add(answer);
+            } else {
+                //Get random answer that is lower than answer (-5) and higher the answer (+5)
+                int randomNum = MathUtils.getRandomAnswer(answer);
+
+                //Make sure random number doesn't already exist
+                if(!answers.isEmpty()){
+                    while (answers.contains(randomNum))
+                    {
+                        randomNum = MathUtils.getRandomAnswer(answer);
+                    }
+                }
+
+                //Make sure random number is not equal to generated answer
+                while (randomNum == answer)
+                {
+                    randomNum = MathUtils.getRandomAnswer(answer);
+                }
+
+                //Finally add random num to answers array
+                answers.add(randomNum);
+            }
+
+        }
     }
 
     public void generateQuestionAndAnswer() {
@@ -35,29 +77,5 @@ public class Question {
         }
 
         question.set(x + " " + randomSign + " " + y + " = ?");
-    }
-
-    private int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
-
-    public String getQuestion() {
-        return question.get();
-    }
-
-    public SimpleStringProperty questionProperty() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question.set(question);
-    }
-
-    public int getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(int answer) {
-        this.answer = answer;
     }
 }
