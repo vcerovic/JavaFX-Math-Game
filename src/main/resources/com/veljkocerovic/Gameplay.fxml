@@ -38,6 +38,20 @@
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="183.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="361.0" text="Score:">
+                     <font>
+                        <Font name="Roboto Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="scoreLbl" alignment="CENTER" prefHeight="36.0" prefWidth="361.0" text="0">
+                     <font>
+                        <Font name="Roboto Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </children>

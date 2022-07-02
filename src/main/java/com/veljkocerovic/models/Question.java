@@ -15,11 +15,13 @@ public class Question {
 
     private static Question question_instance = null;
     private SimpleStringProperty question = new SimpleStringProperty(this, "question", "");
+
     private int answer;
     private ArrayList<Integer> answers;
 
     private Question() {
         generateQuestionAndAnswer();
+        generateAnswers();
     }
 
     public static Question getInstance() {
