@@ -15,7 +15,6 @@ public class Question {
 
     private static Question question_instance = null;
     private SimpleStringProperty question = new SimpleStringProperty(this, "question", "");
-
     private int answer;
     private ArrayList<Integer> answers;
 
@@ -32,28 +31,26 @@ public class Question {
     }
 
 
-    public void generateAnswers(){
+    public void generateAnswers() {
         answers = new ArrayList<>();
         int randomSpot = MathUtils.getRandomNumber(0, 3);
 
         for (int i = 0; i < 4; i++) {
-            if(randomSpot == i){
+            if (randomSpot == i) {
                 answers.add(answer);
             } else {
                 //Get random answer that is lower than answer (-5) and higher the answer (+5)
                 int randomNum = MathUtils.getRandomAnswer(answer);
 
                 //Make sure random number doesn't already exist
-                if(!answers.isEmpty()){
-                    while (answers.contains(randomNum))
-                    {
+                if (!answers.isEmpty()) {
+                    while (answers.contains(randomNum)) {
                         randomNum = MathUtils.getRandomAnswer(answer);
                     }
                 }
 
                 //Make sure random number is not equal to generated answer
-                while (randomNum == answer)
-                {
+                while (randomNum == answer) {
                     randomNum = MathUtils.getRandomAnswer(answer);
                 }
 
@@ -67,7 +64,7 @@ public class Question {
     public void generateQuestionAndAnswer() {
         char[] signs = {'+', '-', '*', '+', '*', '-', '-', '*', '+'};
 
-        char randomSign = signs[getRandomNumber(0, signs.length-1)];
+        char randomSign = signs[getRandomNumber(0, signs.length - 1)];
 
         int x = getRandomNumber(1, 15);
         int y = getRandomNumber(1, 15);
