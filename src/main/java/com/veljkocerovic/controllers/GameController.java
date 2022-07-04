@@ -22,13 +22,13 @@ import java.util.TimerTask;
 public class GameController {
 
     @FXML
-    public Label questionLbl;
+    private Label questionLbl;
     @FXML
-    public GridPane answersGrid;
+    private GridPane answersGrid;
     @FXML
-    public Label scoreLbl;
+    private Label scoreLbl;
     @FXML
-    public ProgressBar timerBar;
+    private ProgressBar timerBar;
 
     private GameManager gameManager;
     private Timer countdownTimer;
@@ -40,11 +40,16 @@ public class GameController {
         Question question = Question.getInstance();
         gameManager = GameManager.getInstance();
 
+        //Binding ui elements to properties
         questionLbl.textProperty().bindBidirectional(question.getQuestion());
         scoreLbl.textProperty().bind(gameManager.getScore().asString());
 
         handleGameLogic(question, gameManager);
+        handleCountdownTimer();
+    }
 
+    private void handleCountdownTimer() {
+        //Countdown logic
         countdownTimer = new Timer();
         countdownTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -101,18 +106,17 @@ public class GameController {
         }
     }
 
+    private void loseGame() throws IOException {
+        countdownTimer.cancel();
+        gameManager.resetScore();
+        AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.ERROR);
+        switchToHomeScene();
+    }
 
     @FXML
     public void switchToHomeScene() throws IOException {
         SceneController sceneController = new SceneController(questionLbl.getScene());
         sceneController.addScreen("Home", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../Home.fxml"))));
         sceneController.activate("Home");
-    }
-
-    private void loseGame() throws IOException {
-        countdownTimer.cancel();
-        gameManager.resetScore();
-        AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.ERROR);
-        switchToHomeScene();
     }
 }
