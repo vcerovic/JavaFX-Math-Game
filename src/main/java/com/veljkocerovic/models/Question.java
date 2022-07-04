@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.veljkocerovic.utils.MathUtils.getRandomNumber;
 
@@ -16,7 +17,7 @@ public class Question {
     private static Question question_instance = null;
     private SimpleStringProperty question = new SimpleStringProperty(this, "question", "");
     private int answer;
-    private ArrayList<Integer> answers;
+    private int[] answers = new int[4];
 
     private Question() {
         generateQuestionAndAnswer();
@@ -32,33 +33,23 @@ public class Question {
 
 
     public void generateAnswers() {
-        answers = new ArrayList<>();
-        int randomSpot = MathUtils.getRandomNumber(0, 3);
+        ArrayList<Integer> randomAnswers = new ArrayList<>();
+
+        //Generate answers
+        for (int i = answer - 5; i < answer + 5; i++) {
+            if(i != answer) randomAnswers.add(i);
+        }
+
+        //Shuffle answers array
+        Collections.shuffle(randomAnswers);
 
         for (int i = 0; i < 4; i++) {
-            if (randomSpot == i) {
-                answers.add(answer);
-            } else {
-                //Get random answer that is lower than answer (-5) and higher the answer (+5)
-                int randomNum = MathUtils.getRandomAnswer(answer);
-
-                //Make sure random number doesn't already exist
-                if (!answers.isEmpty()) {
-                    while (answers.contains(randomNum)) {
-                        randomNum = MathUtils.getRandomAnswer(answer);
-                    }
-                }
-
-                //Make sure random number is not equal to generated answer
-                while (randomNum == answer) {
-                    randomNum = MathUtils.getRandomAnswer(answer);
-                }
-
-                //Finally add random num to answers array
-                answers.add(randomNum);
-            }
-
+            answers[i] = randomAnswers.get(i);
         }
+
+        //Put real answer among dummy answers
+        int randomSpot = MathUtils.getRandomNumber(0, 3);
+        answers[randomSpot] = answer;
     }
 
     public void generateQuestionAndAnswer() {
