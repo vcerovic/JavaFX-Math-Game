@@ -92,7 +92,7 @@ public class GameController {
                     countdown = 1;
                 } else {
                     //If answer is wrong
-                    if (gameManager.getScore().intValue() == 0 || gameManager.getScore().intValue() == 1) {
+                    if (isBadScore(gameManager)) {
                         try {
                             loseGame();
                         } catch (IOException e) {
@@ -112,6 +112,10 @@ public class GameController {
         }
     }
 
+    private boolean isBadScore(GameManager gameManager) {
+        return gameManager.getScore().intValue() <= 1;
+    }
+
     public void loseGame() throws IOException {
         countdownTimer.cancel();
         gameManager.resetScore();
@@ -124,5 +128,23 @@ public class GameController {
         SceneController sceneController = new SceneController(questionLbl.getScene());
         sceneController.addScreen("Home", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../Home.fxml"))));
         sceneController.activate("Home");
+    }
+
+    @FXML
+    public void splitAnswersAndDecreaseScore() {
+    }
+
+    @FXML
+    public void increaseTimeAndDecreaseScore() {
+        countdown += 8;
+        if(isBadScore(gameManager)){
+            try {
+                loseGame();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            gameManager.decreaseScore(1);
+        }
     }
 }
