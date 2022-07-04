@@ -73,20 +73,25 @@ public class GameController {
     private void handleGameLogic(Question question, GameManager gameManager) {
         ObservableList<Node> children = answersGrid.getChildren();
 
+        //Get answers and answer
         int[] answers = question.getAnswers();
         int answer = question.getAnswer();
 
+        //Foreach answer create button and add action event listener
         for (int i = 0; i < children.size(); i++) {
             Button btn = (Button) children.get(i);
             Integer randomAnswer = answers[i];
 
+            //Set button text to answer
             btn.setText(String.valueOf(randomAnswer));
 
             btn.setOnAction(event -> {
+                //If answer is right
                 if (Integer.parseInt(btn.getText()) == answer) {
                     gameManager.increaseScore(1);
                     countdown = 1;
                 } else {
+                    //If answer is wrong
                     if (gameManager.getScore().intValue() == 0 || gameManager.getScore().intValue() == 1) {
                         try {
                             loseGame();
@@ -99,6 +104,7 @@ public class GameController {
 
                 }
 
+                //Generate new questions and answers
                 question.generateQuestionAndAnswer();
                 question.generateAnswers();
                 handleGameLogic(question, gameManager);
@@ -106,7 +112,7 @@ public class GameController {
         }
     }
 
-    private void loseGame() throws IOException {
+    public void loseGame() throws IOException {
         countdownTimer.cancel();
         gameManager.resetScore();
         AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.ERROR);
