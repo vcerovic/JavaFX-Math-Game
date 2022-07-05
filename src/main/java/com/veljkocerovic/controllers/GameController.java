@@ -56,11 +56,7 @@ public class GameController {
             public void run() {
                 Platform.runLater(() -> {
                     if (countdown <= 0) {
-                        try {
-                            loseGame();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                        loseGame();
                     } else {
                         timerBar.setProgress(countdown);
                     }
@@ -92,16 +88,7 @@ public class GameController {
                     countdown = 1;
                 } else {
                     //If answer is wrong
-                    if (isBadScore(gameManager)) {
-                        try {
-                            loseGame();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    } else {
-                        gameManager.decreaseScore(1);
-                    }
-
+                    decreaseAndCheckScore();
                 }
 
                 //Generate new questions and answers
@@ -110,17 +97,6 @@ public class GameController {
                 handleGameLogic(question, gameManager);
             });
         }
-    }
-
-    private boolean isBadScore(GameManager gameManager) {
-        return gameManager.getScore().intValue() <= 1;
-    }
-
-    public void loseGame() throws IOException {
-        countdownTimer.cancel();
-        gameManager.resetScore();
-        AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.ERROR);
-        switchToHomeScene();
     }
 
     @FXML
@@ -132,19 +108,32 @@ public class GameController {
 
     @FXML
     public void splitAnswersAndDecreaseScore() {
+
+        decreaseAndCheckScore();
     }
 
     @FXML
     public void increaseTimeAndDecreaseScore() {
-        countdown += 8;
-        if(isBadScore(gameManager)){
-            try {
-                loseGame();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        countdown = 1;
+        decreaseAndCheckScore();
+    }
+
+    private void decreaseAndCheckScore(){
+        if (gameManager.getScore().intValue() <= 1) {
+            loseGame();
         } else {
             gameManager.decreaseScore(1);
+        }
+    }
+    @FXML
+    public void loseGame(){
+        countdownTimer.cancel();
+        gameManager.resetScore();
+        AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.ERROR);
+        try {
+            switchToHomeScene();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
