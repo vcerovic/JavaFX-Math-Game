@@ -18,6 +18,7 @@ public class Question {
     private SimpleStringProperty question = new SimpleStringProperty(this, "question", "");
     private int answer;
     private int[] answers = new int[4];
+    private int randomSpot;
 
     private Question() {
         generateQuestionAndAnswer();
@@ -48,7 +49,7 @@ public class Question {
         }
 
         //Put real answer among dummy answers
-        int randomSpot = MathUtils.getRandomNumber(0, 3);
+        randomSpot = MathUtils.getRandomNumber(0, 3);
         answers[randomSpot] = answer;
     }
 

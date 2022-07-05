@@ -15,9 +15,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class GameController {
 
@@ -31,20 +29,21 @@ public class GameController {
     private ProgressBar timerBar;
 
     private GameManager gameManager;
+    private Question question;
     private Timer countdownTimer;
     private double countdown = 1;
 
 
     @FXML
     public void initialize() {
-        Question question = Question.getInstance();
+        question = Question.getInstance();
         gameManager = GameManager.getInstance();
 
         //Binding ui elements to properties
         questionLbl.textProperty().bindBidirectional(question.getQuestion());
         scoreLbl.textProperty().bind(gameManager.getScore().asString());
 
-        handleGameLogic(question, gameManager);
+        initButtonsAndClickEvents(question, gameManager);
         handleCountdownTimer();
     }
 
@@ -66,7 +65,7 @@ public class GameController {
         }, 0, 150);
     }
 
-    private void handleGameLogic(Question question, GameManager gameManager) {
+    private void initButtonsAndClickEvents(Question question, GameManager gameManager) {
         ObservableList<Node> children = answersGrid.getChildren();
 
         //Get answers and answer
@@ -76,6 +75,8 @@ public class GameController {
         //Foreach answer create button and add action event listener
         for (int i = 0; i < children.size(); i++) {
             Button btn = (Button) children.get(i);
+            //Set all buttons to visible if player used 50/50 option
+            btn.setVisible(true);
             Integer randomAnswer = answers[i];
 
             //Set button text to answer
@@ -94,7 +95,7 @@ public class GameController {
                 //Generate new questions and answers
                 question.generateQuestionAndAnswer();
                 question.generateAnswers();
-                handleGameLogic(question, gameManager);
+                initButtonsAndClickEvents(question, gameManager);
             });
         }
     }
@@ -109,6 +110,20 @@ public class GameController {
     @FXML
     public void splitAnswersAndDecreaseScore() {
 
+        ArrayList<Integer> randomSpots = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            if(i != question.getRandomSpot()) randomSpots.add(i);
+        }
+
+        Collections.shuffle(randomSpots);
+
+        //Remove two random wrong answers
+        for (int i = 0; i < 2; i++) {
+            Button btn = (Button) answersGrid.getChildren().get(randomSpots.get(i));
+            btn.setVisible(false);
+        }
+
         decreaseAndCheckScore();
     }
 
@@ -118,13 +133,6 @@ public class GameController {
         decreaseAndCheckScore();
     }
 
-    private void decreaseAndCheckScore(){
-        if (gameManager.getScore().intValue() <= 1) {
-            loseGame();
-        } else {
-            gameManager.decreaseScore(1);
-        }
-    }
     @FXML
     public void loseGame(){
         countdownTimer.cancel();
@@ -134,6 +142,14 @@ public class GameController {
             switchToHomeScene();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void decreaseAndCheckScore(){
+        if (gameManager.getScore().intValue() <= 1) {
+            loseGame();
+        } else {
+            gameManager.decreaseScore(1);
         }
     }
 }
