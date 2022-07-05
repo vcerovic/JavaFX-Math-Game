@@ -10,11 +10,11 @@ import java.util.Objects;
 
 public class HomeController {
 
-    public void switchToGameScene(ActionEvent event) throws IOException {
+    public void switchToDifficultySelectorScene(ActionEvent event) throws IOException {
         SceneController sceneController = new SceneController(((Node) event.getSource()).getScene());
-        sceneController.addScreen("Gameplay", FXMLLoader
-                .load(Objects.requireNonNull(getClass().getResource("../Gameplay.fxml"))));
-        sceneController.activate("Gameplay");
+        sceneController.addScreen("DifficultySelector", FXMLLoader
+                .load(Objects.requireNonNull(getClass().getResource("../DifficultySelector.fxml"))));
+        sceneController.activate("DifficultySelector");
     }
 
     public void quitGame() {

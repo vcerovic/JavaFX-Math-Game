@@ -21,7 +21,7 @@
             </Label>
             <VBox alignment="CENTER" prefHeight="153.0" prefWidth="430.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#switchToGameScene" text="PLAY">
+                  <Button mnemonicParsing="false" onAction="#switchToDifficultySelectorScene" text="PLAY">
                      <font>
                         <Font name="Roboto Bold" size="18.0" />
                      </font>
