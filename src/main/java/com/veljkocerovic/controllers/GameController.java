@@ -34,10 +34,15 @@ public class GameController {
     private double countdown = 1;
 
 
+
     @FXML
     public void initialize() {
         question = Question.getInstance();
         gameManager = GameManager.getInstance();
+
+        //Generate new questions and answers
+        question.generateQuestionAndAnswer(gameManager.getDifficulty());
+        question.generateAnswers();
 
         //Binding ui elements to properties
         questionLbl.textProperty().bindBidirectional(question.getQuestion());
@@ -62,7 +67,7 @@ public class GameController {
                 });
                 countdown -= 0.01;
             }
-        }, 0, 150);
+        }, 0, gameManager.getAnswerCountdownByDifficulty());
     }
 
     private void initButtonsAndClickEvents(Question question, GameManager gameManager) {
@@ -93,7 +98,7 @@ public class GameController {
                 }
 
                 //Generate new questions and answers
-                question.generateQuestionAndAnswer();
+                question.generateQuestionAndAnswer(gameManager.getDifficulty());
                 question.generateAnswers();
                 initButtonsAndClickEvents(question, gameManager);
             });

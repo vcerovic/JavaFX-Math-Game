@@ -21,8 +21,7 @@ public class Question {
     private int randomSpot;
 
     private Question() {
-        generateQuestionAndAnswer();
-        generateAnswers();
+
     }
 
     public static Question getInstance() {
@@ -53,13 +52,20 @@ public class Question {
         answers[randomSpot] = answer;
     }
 
-    public void generateQuestionAndAnswer() {
+    public void generateQuestionAndAnswer(Difficulty difficulty) {
         char[] signs = {'+', '-', '*', '+', '*', '-', '-', '*', '+'};
 
         char randomSign = signs[getRandomNumber(0, signs.length - 1)];
 
-        int x = getRandomNumber(1, 15);
-        int y = getRandomNumber(1, 15);
+
+        int x = 0, y = 0;
+
+        switch (difficulty){
+            case EASY -> {x = getRandomNumber(1, 9); y = getRandomNumber(1, 9);}
+            case MEDIUM -> {x = getRandomNumber(9, 20); y = getRandomNumber(9, 20);}
+            case HARD -> {x = getRandomNumber(10, 99); y = getRandomNumber(10, 99);}
+        }
+
 
         switch (randomSign) {
             case '+' -> answer = x + y;
