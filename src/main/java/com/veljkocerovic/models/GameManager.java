@@ -44,9 +44,9 @@ public class GameManager {
         int period = 0;
 
         switch (difficulty) {
-            case EASY -> period = 150;
-            case MEDIUM -> period = 250;
-            case HARD -> period = 350;
+            case EASY -> period = 50;
+            case MEDIUM -> period = 100;
+            case HARD -> period = 200;
         }
 
         return period;

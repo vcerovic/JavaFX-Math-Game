@@ -21,7 +21,7 @@
             </Label>
             <VBox alignment="CENTER" prefHeight="153.0" prefWidth="430.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#switchToDifficultySelectorScene" text="PLAY">
+                  <Button mnemonicParsing="false" onAction="#switchToOptionsScene" text="PLAY">
                      <font>
                         <Font name="Roboto Bold" size="18.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="LEADERBOARD">
+                  <Button mnemonicParsing="false" onAction="#switchToLeaderboardsScene" text="LEADERBOARD">
                      <font>
                         <Font name="Roboto Bold" size="18.0" />
                      </font>
