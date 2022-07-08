@@ -5,6 +5,7 @@ import com.veljkocerovic.models.GameManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
@@ -16,7 +17,7 @@ public class DifficultyController {
     private ToggleGroup difficultyGroup;
 
     @FXML
-    private void playGame(ActionEvent event) throws IOException {
+    private void playGame(ActionEvent event) {
         RadioButton radioButton = (RadioButton) difficultyGroup.getSelectedToggle();
 
         switch (radioButton.getText()) {
@@ -25,10 +26,7 @@ public class DifficultyController {
             case "Hard" -> GameManager.getInstance().setDifficulty(Difficulty.HARD);
         }
 
-        SceneController sceneController = new SceneController(radioButton.getScene());
-        sceneController.addScreen("Gameplay", FXMLLoader
-                .load(Objects.requireNonNull(getClass().getResource("../Gameplay.fxml"))));
-
-        sceneController.activate("Gameplay");
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.showScene(((Node) event.getSource()).getScene(),"Gameplay");
     }
 }

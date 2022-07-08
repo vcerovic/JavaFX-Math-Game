@@ -1,28 +1,44 @@
 package com.veljkocerovic.controllers;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.HashMap;
+import java.io.IOException;
+import java.util.Objects;
 
+@Getter
+@Setter
 public class SceneController {
 
-    private final HashMap<String, Pane> screenMap = new HashMap<>();
-    private final Scene main;
+    private static SceneController sceneController;
+    private Stage stage;
 
-    public SceneController(Scene main) {
-        this.main = main;
+    private SceneController(){
+
     }
 
-    protected void addScreen(String name, Pane pane){
-        screenMap.put(name, pane);
+    public static SceneController getInstance() {
+        if (sceneController == null)
+            sceneController = new SceneController();
+
+        return sceneController;
     }
 
-    protected void removeScreen(String name){
-        screenMap.remove(name);
+    public void showScene(Scene scene, String viewName){
+        try {
+            Pane root = FXMLLoader.load(Objects
+                    .requireNonNull(getClass().getResource("../%s.fxml".formatted(viewName))));
+            scene.setRoot(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    protected void activate(String name){
-        main.setRoot( screenMap.get(name) );
-    }
 }

@@ -6,7 +6,6 @@ import com.veljkocerovic.utils.AlertUtils;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,7 +14,10 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameController {
 
@@ -32,7 +34,6 @@ public class GameController {
     private Question question;
     private Timer countdownTimer;
     private double countdown = 1;
-
 
 
     @FXML
@@ -107,9 +108,8 @@ public class GameController {
 
     @FXML
     public void switchToHomeScene() throws IOException {
-        SceneController sceneController = new SceneController(questionLbl.getScene());
-        sceneController.addScreen("Home", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../Home.fxml"))));
-        sceneController.activate("Home");
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.showScene(questionLbl.getScene(), "Home");
     }
 
     @FXML
@@ -118,7 +118,7 @@ public class GameController {
         ArrayList<Integer> randomSpots = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            if(i != question.getRandomSpot()) randomSpots.add(i);
+            if (i != question.getRandomSpot()) randomSpots.add(i);
         }
 
         Collections.shuffle(randomSpots);
@@ -139,7 +139,7 @@ public class GameController {
     }
 
     @FXML
-    public void loseGame(){
+    public void loseGame() {
         countdownTimer.cancel();
         gameManager.resetScore();
         AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.ERROR);
@@ -150,7 +150,7 @@ public class GameController {
         }
     }
 
-    private void decreaseAndCheckScore(){
+    private void decreaseAndCheckScore() {
         if (gameManager.getScore().intValue() <= 1) {
             loseGame();
         } else {

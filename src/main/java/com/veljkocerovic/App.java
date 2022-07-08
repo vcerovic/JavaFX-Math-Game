@@ -1,5 +1,6 @@
 package com.veljkocerovic;
 
+import com.veljkocerovic.controllers.SceneController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,8 @@ public class App extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
         stage.setResizable(false);
         stage.setScene(new Scene(root));
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.setStage(stage);
         stage.show();
     }
 

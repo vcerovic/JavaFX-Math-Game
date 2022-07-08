@@ -12,19 +12,15 @@ import java.util.Objects;
 public class HomeController {
 
     @FXML
-    public void switchToOptionsScene(ActionEvent event) throws IOException {
-        SceneController sceneController = new SceneController(((Node) event.getSource()).getScene());
-        sceneController.addScreen("Options", FXMLLoader
-                .load(Objects.requireNonNull(getClass().getResource("../Options.fxml"))));
-        sceneController.activate("Options");
+    public void switchToOptionsScene(ActionEvent event) {
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.showScene(((Node) event.getSource()).getScene(),"Options");
     }
 
     @FXML
-    public void switchToLeaderboardsScene(ActionEvent event) throws IOException {
-        SceneController sceneController = new SceneController(((Node) event.getSource()).getScene());
-        sceneController.addScreen("Leaderboards", FXMLLoader
-                .load(Objects.requireNonNull(getClass().getResource("../Leaderboards.fxml"))));
-        sceneController.activate("Leaderboards");
+    public void switchToLeaderboardsScene(ActionEvent event) {
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.showScene(((Node) event.getSource()).getScene(),"Leaderboards");
     }
 
     public void quitGame() {
