@@ -154,6 +154,7 @@ public class GameController {
         if (gameManager.getScore().intValue() <= 1) {
             loseGame();
         } else {
+            countdown = 1;
             gameManager.decreaseScore(1);
         }
     }
