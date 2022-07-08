@@ -31,7 +31,7 @@
                         <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="122.0" text="Hard" toggleGroup="$difficultyGroup" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="303.0" prefWidth="769.0" />
+                  <VBox prefHeight="303.0" prefWidth="586.0" />
                </children>
             </HBox>
             <Button mnemonicParsing="false" onAction="#playGame" text="PLAY" />
