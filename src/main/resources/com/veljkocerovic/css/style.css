@@ -1,0 +1,23 @@
+.anchor-pane{
+    -fx-background-color: linear-gradient(to right, #FF636D, #FFBF70);
+}
+
+.game-border{
+       -fx-background-color: #fff;
+       -fx-background-radius: 10px;
+}
+
+.progress-bar{
+  -fx-text-box-border: #fff;
+  -fx-control-inner-background: #fff;
+  -fx-accent: #FF906F;
+}
+
+.answer{
+    -fx-background-color: #F1F1F1;
+    -fx-background-radius: 10px;
+}
+
+.answer:hover{
+    -fx-background-color: #FF906F;
+}

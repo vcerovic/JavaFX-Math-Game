@@ -29,7 +29,7 @@ public class SceneController {
     public void showScene(Scene scene, String viewName){
         try {
             Pane root = FXMLLoader.load(Objects
-                    .requireNonNull(getClass().getResource("../%s.fxml".formatted(viewName))));
+                    .requireNonNull(getClass().getResource("../views/%s.fxml".formatted(viewName))));
             scene.setRoot(root);
 
         } catch (IOException e) {
