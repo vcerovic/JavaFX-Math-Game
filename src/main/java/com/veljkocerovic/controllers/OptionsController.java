@@ -31,6 +31,7 @@ public class OptionsController {
     @FXML
     private void playGame(ActionEvent event) {
         RadioButton radioButton = (RadioButton) difficultyGroup.getSelectedToggle();
+        boolean success = false;
 
         if (userChoiceBox.getValue() == null){
             if(usernameTextFld.getText().equals("")){
@@ -41,16 +42,18 @@ public class OptionsController {
                 User newUser = new User(usernameTextFld.getText().trim().toLowerCase());
 
                 //Save user
-                boolean success = UserDAO.saveUser(newUser);
+                boolean isSaved = UserDAO.saveUser(newUser);
 
-                if(success){
+                if(isSaved) {
                     userSession.setActiveUser(newUser);
+                    success = true;
                 }
             }
         } else {
             //Play as selected user
             Optional<User> optionalUser = UserDAO.getUserByUsername(userChoiceBox.getValue().trim().toLowerCase());
             User user = optionalUser.orElseThrow(() -> new RuntimeException("No user found with that username"));
+            success = true;
 
             //Set selected user as active
             UserSession userSession = UserSession.getInstance();
@@ -67,8 +70,14 @@ public class OptionsController {
         }
 
 
-        SceneController sceneController = SceneController.getInstance();
-        sceneController.showScene(((Node) event.getSource()).getScene(),"Gameplay");
+        if(success){
+            SceneController sceneController = SceneController.getInstance();
+            sceneController.showScene(((Node) event.getSource()).getScene(),"Gameplay");
+        }
+    }
 
+    public void switchToHomePage(ActionEvent event) {
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.showScene(((Node) event.getSource()).getScene(),"Home");
     }
 }

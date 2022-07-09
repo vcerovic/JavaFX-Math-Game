@@ -62,5 +62,6 @@
                </font></Button>
          </children>
       </VBox>
+      <Button layoutX="14.0" layoutY="555.0" mnemonicParsing="false" onAction="#switchToHomePage" text="&lt; HOMEPAGE" />
    </children>
 </AnchorPane>

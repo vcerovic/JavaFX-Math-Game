@@ -62,15 +62,16 @@ public class UserDAO {
         Transaction tx;
         boolean success = false;
 
-
         try {
             tx = session.beginTransaction();
 
             if (getUserByUsername(user.getUsername()).isEmpty()) {
-                AlertUtils.showAlertMessage("User with username: " + user.getUsername() + " already exists", Alert.AlertType.ERROR);
-            } else {
                 session.persist(user);
                 success = true;
+            } else {
+                String msg = "User with username: " + user.getUsername() + " already exists";
+                AlertUtils.showAlertMessage(msg, Alert.AlertType.ERROR);
+                throw new RuntimeException(msg);
             }
             tx.commit();
         } catch (Exception e) {
