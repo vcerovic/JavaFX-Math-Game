@@ -83,5 +83,26 @@ public class UserDAO {
         return success;
     }
 
+    public static void updateUser(int id, User user) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction tx;
+
+        try {
+            tx = session.beginTransaction();
+
+            User foundUser = session.get(User.class, id);
+
+            if (foundUser != null) {
+                session.merge(user);
+            }
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            HibernateUtils.close();
+        }
+    }
+
 
 }

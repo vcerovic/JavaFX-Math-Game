@@ -1,7 +1,9 @@
 package com.veljkocerovic.controllers;
 
+import com.veljkocerovic.database.UserDAO;
 import com.veljkocerovic.models.GameManager;
 import com.veljkocerovic.models.Question;
+import com.veljkocerovic.models.User;
 import com.veljkocerovic.models.UserSession;
 import com.veljkocerovic.utils.AlertUtils;
 import javafx.application.Platform;
@@ -14,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Timer;
@@ -22,6 +23,10 @@ import java.util.TimerTask;
 
 public class GameController {
 
+    @FXML
+    private Label userHighscoreLbl;
+    @FXML
+    private Label usernameLbl;
     @FXML
     private Label questionLbl;
     @FXML
@@ -35,12 +40,20 @@ public class GameController {
     private Question question;
     private Timer countdownTimer;
     private double countdown = 1;
+    private final int scorePerAnswer = 2;
+
+    private User activeUser;
+    private boolean isLost = false;
 
 
     @FXML
     public void initialize() {
-        UserSession userSession = UserSession.getInstance();
-        System.out.println(userSession.getActiveUser());
+        //User Session
+        activeUser = UserSession.getInstance().getActiveUser();
+        usernameLbl.setText(activeUser.getUsername());
+        userHighscoreLbl.setText(String.valueOf(activeUser.getHighscore()));
+
+        //Question and GameManager
         question = Question.getInstance();
         gameManager = GameManager.getInstance();
 
@@ -64,7 +77,11 @@ public class GameController {
             public void run() {
                 Platform.runLater(() -> {
                     if (countdown <= 0) {
-                        loseGame();
+                        if(!isLost){
+                            loseGame();
+                            isLost = true;
+                        }
+
                     } else {
                         timerBar.setProgress(countdown);
                     }
@@ -94,11 +111,12 @@ public class GameController {
             btn.setOnAction(event -> {
                 //If answer is right
                 if (Integer.parseInt(btn.getText()) == answer) {
-                    gameManager.increaseScore(1);
                     countdown = 1;
+                    gameManager.increaseScore(scorePerAnswer);
                 } else {
                     //If answer is wrong
-                    decreaseAndCheckScore();
+                    decreaseAndCheckScore(2);
+                    countdown = 1;
                 }
 
                 //Generate new questions and answers
@@ -110,9 +128,9 @@ public class GameController {
     }
 
     @FXML
-    public void switchToHomeScene() throws IOException {
+    public void switchToHomeScene() {
         SceneController sceneController = SceneController.getInstance();
-        sceneController.showScene(questionLbl.getScene(), "Home");
+        sceneController.showScene(userHighscoreLbl.getScene(), "Home");
     }
 
     @FXML
@@ -132,33 +150,39 @@ public class GameController {
             btn.setVisible(false);
         }
 
-        decreaseAndCheckScore();
+        decreaseAndCheckScore(1);
     }
 
     @FXML
     public void increaseTimeAndDecreaseScore() {
         countdown = 1;
-        decreaseAndCheckScore();
+        decreaseAndCheckScore(1);
     }
 
     @FXML
     public void loseGame() {
+        activeUser.setTimesPlayed(activeUser.getTimesPlayed() + 1);
+
+        //Update user's highscore, if needed
+        if (gameManager.getScore().get() > activeUser.getHighscore()) {
+            activeUser.setHighscore(gameManager.getScore().get());
+        }
+
+        //Update user
+        UserDAO.updateUser(activeUser.getId(), activeUser);
+
         countdownTimer.cancel();
         gameManager.resetScore();
-        AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.ERROR);
-        try {
-            switchToHomeScene();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        switchToHomeScene();
+        AlertUtils.showAlertMessage("GAME OVER", Alert.AlertType.INFORMATION);
     }
 
-    private void decreaseAndCheckScore() {
-        if (gameManager.getScore().intValue() <= 1) {
+    private void decreaseAndCheckScore(int score) {
+        if (gameManager.getScore().intValue() <= score) {
             loseGame();
         } else {
-            countdown = 1;
-            gameManager.decreaseScore(1);
+            gameManager.decreaseScore(score);
         }
     }
 }

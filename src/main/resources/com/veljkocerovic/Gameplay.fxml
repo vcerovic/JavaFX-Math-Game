@@ -83,11 +83,27 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#increaseTimeAndDecreaseScore" prefHeight="46.0" prefWidth="119.0" text="Reset Time" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#increaseTimeAndDecreaseScore" prefHeight="46.0" prefWidth="119.0" text="Time" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Roboto Black" size="25.0" />
                </font>
             </Button>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="676.0" layoutY="27.0" prefHeight="115.0" prefWidth="149.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="239.0" text="Playing:">
+               <font>
+                  <Font name="Roboto Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="231.0" text="Username" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="231.0" text="Highscore:">
+               <font>
+                  <Font name="Roboto Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="userHighscoreLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="231.0" text="15" />
          </children>
       </VBox>
    </children>
