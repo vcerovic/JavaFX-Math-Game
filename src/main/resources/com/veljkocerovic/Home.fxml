@@ -29,14 +29,6 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="PROFILE">
-                     <font>
-                        <Font name="Roboto Bold" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
-                  </Button>
                   <Button mnemonicParsing="false" onAction="#switchToLeaderboardsScene" text="LEADERBOARD">
                      <font>
                         <Font name="Roboto Bold" size="18.0" />

@@ -25,5 +25,7 @@ public class User {
     @Column(name = "times_played")
     private int timesPlayed;
 
-
+    public User(String username) {
+        this.username = username;
+    }
 }

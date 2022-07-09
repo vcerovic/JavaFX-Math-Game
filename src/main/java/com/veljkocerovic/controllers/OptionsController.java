@@ -1,0 +1,74 @@
+package com.veljkocerovic.controllers;
+
+import com.veljkocerovic.database.UserDAO;
+import com.veljkocerovic.models.Difficulty;
+import com.veljkocerovic.models.GameManager;
+import com.veljkocerovic.models.User;
+import com.veljkocerovic.models.UserSession;
+import com.veljkocerovic.utils.AlertUtils;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+
+import java.util.List;
+import java.util.Optional;
+
+public class OptionsController {
+
+    @FXML
+    private ChoiceBox<String> userChoiceBox;
+    @FXML
+    private TextField usernameTextFld;
+    @FXML
+    private ToggleGroup difficultyGroup;
+
+    @FXML
+    public void initialize(){
+        List<User> users = UserDAO.getAllUsersByHighscore();
+        users.forEach(user -> userChoiceBox.getItems().add(user.getUsername()));
+    }
+    @FXML
+    private void playGame(ActionEvent event) {
+        RadioButton radioButton = (RadioButton) difficultyGroup.getSelectedToggle();
+
+        if (userChoiceBox.getValue() == null){
+            if(usernameTextFld.getText().equals("")){
+                AlertUtils.showAlertMessage("You must enter username", Alert.AlertType.ERROR);
+            } else {
+                //Create user and play as him
+                UserSession userSession = UserSession.getInstance();
+                User newUser = new User(usernameTextFld.getText().trim().toLowerCase());
+
+                //Save user
+                boolean success = UserDAO.saveUser(newUser);
+
+                if(success){
+                    userSession.setActiveUser(newUser);
+                }
+            }
+        } else {
+            //Play as selected user
+            Optional<User> optionalUser = UserDAO.getUserByUsername(userChoiceBox.getValue().trim().toLowerCase());
+            User user = optionalUser.orElseThrow(() -> new RuntimeException("No user found with that username"));
+
+            //Set selected user as active
+            UserSession userSession = UserSession.getInstance();
+            userSession.setActiveUser(user);
+
+        }
+
+
+
+        switch (radioButton.getText()) {
+            case "Easy" -> GameManager.getInstance().setDifficulty(Difficulty.EASY);
+            case "Medium" -> GameManager.getInstance().setDifficulty(Difficulty.MEDIUM);
+            case "Hard" -> GameManager.getInstance().setDifficulty(Difficulty.HARD);
+        }
+
+
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.showScene(((Node) event.getSource()).getScene(),"Gameplay");
+
+    }
+}

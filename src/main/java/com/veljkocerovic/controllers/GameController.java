@@ -2,6 +2,7 @@ package com.veljkocerovic.controllers;
 
 import com.veljkocerovic.models.GameManager;
 import com.veljkocerovic.models.Question;
+import com.veljkocerovic.models.UserSession;
 import com.veljkocerovic.utils.AlertUtils;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -38,6 +39,8 @@ public class GameController {
 
     @FXML
     public void initialize() {
+        UserSession userSession = UserSession.getInstance();
+        System.out.println(userSession.getActiveUser());
         question = Question.getInstance();
         gameManager = GameManager.getInstance();
 

@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 public class GameManager {
     private static GameManager manager;
-
     private Difficulty difficulty;
 
     private int answerCountdown ;

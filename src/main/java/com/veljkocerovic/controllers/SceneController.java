@@ -15,8 +15,6 @@ import java.util.Objects;
 public class SceneController {
 
     private static SceneController sceneController;
-    private Stage stage;
-
     private SceneController(){
 
     }
@@ -33,8 +31,7 @@ public class SceneController {
             Pane root = FXMLLoader.load(Objects
                     .requireNonNull(getClass().getResource("../%s.fxml".formatted(viewName))));
             scene.setRoot(root);
-            stage.setScene(scene);
-            stage.show();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
