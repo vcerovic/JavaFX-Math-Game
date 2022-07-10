@@ -2,6 +2,11 @@
     -fx-background-color: linear-gradient(to right, #FF636D, #FFBF70);
 }
 
+.heading-label{
+-fx-background-color: linear-gradient(to right, #d6545c,    #FF636D);
+ -fx-background-radius: 10 10 0 0;
+}
+
 .game-border{
        -fx-background-color: #fff;
        -fx-background-radius: 10px;
@@ -9,15 +14,33 @@
 
 .progress-bar{
   -fx-text-box-border: #fff;
-  -fx-control-inner-background: #fff;
-  -fx-accent: #FF906F;
+  -fx-control-inner-background: #f1f1f1;
+  -fx-accent: #d6545c;
 }
 
 .answer{
     -fx-background-color: #F1F1F1;
     -fx-background-radius: 10px;
+
 }
 
 .answer:hover{
     -fx-background-color: #FF906F;
 }
+
+.ability{
+  -fx-background-color: #FFF;
+    -fx-background-radius: 10px;
+}
+
+.ability:hover{
+  -fx-background-color: #F1F1F1;
+}
+
+.navigation-btn{
+  -fx-background-color: #FFF;
+  -fx-background-radius: 50%;
+}
+
+
+
