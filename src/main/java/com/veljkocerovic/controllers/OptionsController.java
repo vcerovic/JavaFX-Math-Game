@@ -6,6 +6,7 @@ import com.veljkocerovic.models.GameManager;
 import com.veljkocerovic.models.User;
 import com.veljkocerovic.models.UserSession;
 import com.veljkocerovic.utils.AlertUtils;
+import com.veljkocerovic.utils.ValidationUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -34,25 +35,21 @@ public class OptionsController {
         boolean success = false;
 
         if (userChoiceBox.getValue() == null){
-            if(usernameTextFld.getText().equals("")){
-                AlertUtils.showAlertMessage("You must enter username", Alert.AlertType.ERROR);
-            } else if (usernameTextFld.getText().length() > 8) {
-                AlertUtils.showAlertMessage("Username can only be 8 characters", Alert.AlertType.ERROR);
-            } else {
-                //Create user and play as him
-                UserSession userSession = UserSession.getInstance();
-                User newUser = new User(usernameTextFld.getText().trim().toLowerCase());
+                if(ValidationUtils.validateTextFld(usernameTextFld.getText())) {
+                    //Create user and play as him
+                    UserSession userSession = UserSession.getInstance();
+                    User newUser = new User(usernameTextFld.getText().trim().toLowerCase());
 
-                //Save user
-                boolean isSaved = UserDAO.saveUser(newUser);
+                    //Save user
+                    boolean isSaved = UserDAO.saveUser(newUser);
 
-                System.out.println(isSaved);
+                    System.out.println(isSaved);
 
-                if(isSaved) {
-                    userSession.setActiveUser(newUser);
-                    success = true;
+                    if (isSaved) {
+                        userSession.setActiveUser(newUser);
+                        success = true;
+                    }
                 }
-            }
         } else {
             //Play as selected user
             Optional<User> optionalUser = UserDAO.getUserByUsername(userChoiceBox.getValue().trim().toLowerCase());

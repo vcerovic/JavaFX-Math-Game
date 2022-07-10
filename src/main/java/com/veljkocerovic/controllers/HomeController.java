@@ -22,4 +22,9 @@ public class HomeController {
     public void quitGame() {
         Platform.exit();
     }
+
+    public void switchToProfileScene(ActionEvent event) {
+        SceneController sceneController = SceneController.getInstance();
+        sceneController.showScene(((Node) event.getSource()).getScene(),"Profile");
+    }
 }

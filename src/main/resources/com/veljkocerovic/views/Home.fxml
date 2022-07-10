@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" styleClass="anchor-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.HomeController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="241.0" layoutY="159.0" prefHeight="477.0" prefWidth="518.0">
+      <VBox alignment="TOP_CENTER" layoutX="241.0" layoutY="102.0" prefHeight="528.0" prefWidth="518.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="87.0" prefWidth="552.0" text="MATH GAME" textFill="WHITE">
                <font>
@@ -44,6 +44,21 @@
                            </color>
                         </DropShadow>
                      </effect>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#switchToProfileScene" styleClass="ability" text="PROFILE">
+                     <font>
+                        <Font name="Roboto Black" size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow offsetY="4.0" radius="5.25" width="2.0">
+                           <color>
+                              <Color opacity="0.12977099418640137" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#switchToLeaderboardsScene" styleClass="ability" text="LEADERBOARD">
                      <font>

@@ -105,5 +105,36 @@ public class UserDAO {
         }
     }
 
+    public static void deleteUser(int id){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction tx;
 
+        try {
+            tx = session.beginTransaction();
+
+            User foundUser = session.get(User.class, id);
+
+            if (foundUser != null) {
+                session.remove(foundUser);
+            }
+
+            AlertUtils.showAlertMessage("User successfully deleted.", Alert.AlertType.INFORMATION);
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            HibernateUtils.close();
+        }
+    }
+
+    public static void changeUsername(int id, User newUser) {
+        if(getUserByUsername(newUser.getUsername()).isPresent()){
+            AlertUtils.showAlertMessage("That username is already taken", Alert.AlertType.ERROR);
+            throw new RuntimeException("That username is already taken");
+        }
+
+        updateUser(id, newUser);
+        AlertUtils.showAlertMessage("User successfully updated.", Alert.AlertType.INFORMATION);
+    }
 }
