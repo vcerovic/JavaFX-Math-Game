@@ -52,8 +52,9 @@ public class UserDAO {
         } finally {
             HibernateUtils.close();
         }
+        
 
-        return Optional.ofNullable(users != null ? users.get(0) : null);
+        return Optional.ofNullable((users != null ? users.size() : 0) > 0 ? users.get(0) : null);
     }
 
 

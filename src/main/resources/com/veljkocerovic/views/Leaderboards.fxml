@@ -11,13 +11,13 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="594.0" prefWidth="858.0" styleClass="anchor-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.LeaderboardController">
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" styleClass="anchor-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.LeaderboardController">
     <children>
-        <VBox layoutX="184.0" layoutY="25.0" prefHeight="505.0" prefWidth="491.0">
+        <VBox layoutX="207.0" layoutY="73.0" prefHeight="505.0" prefWidth="587.0">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="727.0" text="LEADERBOARDS" textAlignment="CENTER" textFill="WHITE">
                     <font>
-                        <Font name="Roboto Black" size="37.0" />
+                        <Font name="Roboto Black" size="50.0" />
                     </font>
                     <effect>
                         <DropShadow offsetY="4.0" radius="4.75" width="0.0">
@@ -27,25 +27,25 @@
                         </DropShadow>
                     </effect>
                 </Label>
-                <TableView fx:id="leaderBoardTable" prefHeight="390.0" prefWidth="727.0">
+                <TableView fx:id="leaderBoardTable" prefHeight="390.0" prefWidth="499.0" styleClass="table">
                     <columns>
                         <TableColumn prefWidth="75.0" text="Rank">
                             <cellValueFactory>
                                 <PropertyValueFactory property="rank" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="138.0" text="Username">
+                        <TableColumn prefWidth="207.0" text="Username">
                             <cellValueFactory>
                                 <PropertyValueFactory property="username" />
                             </cellValueFactory>
                         </TableColumn>
 
-                        <TableColumn prefWidth="138.0" text="Highscore">
+                        <TableColumn prefWidth="170.0" text="Highscore">
                             <cellValueFactory>
                                 <PropertyValueFactory property="highscore" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="138.0" text="Times Played">
+                        <TableColumn prefWidth="134.0" text="Times Played">
                             <cellValueFactory>
                                 <PropertyValueFactory property="timesPlayed" />
                             </cellValueFactory>
@@ -54,9 +54,17 @@
                 </TableView>
             </children>
         </VBox>
-      <Button layoutX="14.0" layoutY="549.0" mnemonicParsing="false" onAction="#switchToHomePage" styleClass="navigation-btn" text="&lt;">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Button>
+        <Button layoutX="27.0" layoutY="583.0" mnemonicParsing="false" onAction="#switchToHomePage" prefHeight="15.0" prefWidth="31.0" styleClass="navigation-btn" text="&lt;">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <effect>
+                <DropShadow offsetY="4.0" radius="4.75" width="0.0">
+                    <color>
+                        <Color opacity="0.24045801162719727" />
+                    </color>
+                </DropShadow>
+            </effect>
+        </Button>
     </children>
 </AnchorPane>

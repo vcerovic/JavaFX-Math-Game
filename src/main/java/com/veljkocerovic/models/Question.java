@@ -62,8 +62,8 @@ public class Question {
 
         switch (difficulty){
             case EASY -> {x = getRandomNumber(1, 9); y = getRandomNumber(1, 9);}
-            case MEDIUM -> {x = getRandomNumber(9, 20); y = getRandomNumber(9, 20);}
-            case HARD -> {x = getRandomNumber(10, 99); y = getRandomNumber(10, 99);}
+            case MEDIUM -> {x = getRandomNumber(9, 12); y = getRandomNumber(9, 20);}
+            case HARD -> {x = getRandomNumber(10, 20); y = getRandomNumber(10, 20);}
         }
 
 

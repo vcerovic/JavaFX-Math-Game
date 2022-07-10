@@ -36,6 +36,8 @@ public class OptionsController {
         if (userChoiceBox.getValue() == null){
             if(usernameTextFld.getText().equals("")){
                 AlertUtils.showAlertMessage("You must enter username", Alert.AlertType.ERROR);
+            } else if (usernameTextFld.getText().length() > 8) {
+                AlertUtils.showAlertMessage("Username can only be 8 characters", Alert.AlertType.ERROR);
             } else {
                 //Create user and play as him
                 UserSession userSession = UserSession.getInstance();
@@ -43,6 +45,8 @@ public class OptionsController {
 
                 //Save user
                 boolean isSaved = UserDAO.saveUser(newUser);
+
+                System.out.println(isSaved);
 
                 if(isSaved) {
                     userSession.setActiveUser(newUser);

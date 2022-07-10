@@ -10,105 +10,120 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="641.0" prefWidth="1057.0" styleClass="anchor-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.GameController">
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" styleClass="anchor-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.GameController">
    <children>
-      <VBox alignment="CENTER" layoutX="375.0" layoutY="111.0" prefHeight="375.0" prefWidth="307.0" styleClass="game-border">
+      <VBox alignment="TOP_CENTER" layoutX="344.0" layoutY="118.0" prefHeight="375.0" prefWidth="307.0" styleClass="game-border">
          <children>
-            <Label fx:id="questionLbl" alignment="CENTER" prefHeight="70.0" prefWidth="302.0" text="2+2=?" textAlignment="CENTER">
+            <Label fx:id="questionLbl" alignment="CENTER" prefHeight="87.0" prefWidth="310.0" styleClass="heading-label" text="2+2=?" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Roboto Bold" size="40.0" />
+                  <Font name="Roboto Black" size="40.0" />
                </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets></Label>
-            <ProgressBar fx:id="timerBar" prefHeight="15.0" prefWidth="224.0" progress="1.0" />
-            <GridPane fx:id="answersGrid" alignment="CENTER" prefHeight="154.0" prefWidth="191.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="162.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="0.0" prefWidth="162.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+               <effect>
+                  <DropShadow height="26.13" offsetY="4.0" radius="6.0325" width="0.0">
+                     <color>
+                        <Color opacity="0.07633586972951889" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="278.0" prefWidth="307.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="4" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                     <font>
-                        <Font name="Roboto Black" size="25.0" />
-                     </font>
-                     <effect>
-                        <DropShadow height="9.04" offsetY="1.0" radius="1.7599999999999998" width="0.0">
-                           <color>
-                              <Color opacity="0.16030533611774445" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="6" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                     <font>
-                        <Font name="Roboto Black" size="25.0" />
-                     </font>
-                     <effect>
-                        <DropShadow height="9.04" offsetY="1.0" radius="1.7599999999999998" width="0.0">
-                           <color>
-                              <Color opacity="0.16030533611774445" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="3" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                     <font>
-                        <Font name="Roboto Black" size="25.0" />
-                     </font>
-                     <effect>
-                        <DropShadow height="9.04" offsetY="1.0" radius="1.7599999999999998" width="0.0">
-                           <color>
-                              <Color opacity="0.16030533611774445" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="2" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                     <font>
-                        <Font name="Roboto Black" size="25.0" />
-                     </font>
-                     <effect>
-                        <DropShadow height="11.05" offsetY="1.0" radius="2.2625" width="0.0">
-                           <color>
-                              <Color opacity="0.16030533611774445" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
+                  <GridPane fx:id="answersGrid" alignment="CENTER" prefHeight="154.0" prefWidth="191.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="162.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="0.0" prefWidth="162.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="4" textAlignment="CENTER" textFill="#3d3d3d" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                           <font>
+                              <Font name="Roboto Black" size="25.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="14.32" offsetY="1.0" radius="3.08" width="0.0">
+                                 <color>
+                                    <Color opacity="0.30534350872039795" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="6" textAlignment="CENTER" textFill="#3d3d3d" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                           <font>
+                              <Font name="Roboto Black" size="25.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="14.32" offsetY="1.0" radius="3.08" width="0.0">
+                                 <color>
+                                    <Color opacity="0.30534350872039795" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="3" textAlignment="CENTER" textFill="#3d3d3d" textOverrun="CENTER_ELLIPSIS" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                           <font>
+                              <Font name="Roboto Black" size="25.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="14.32" offsetY="1.0" radius="3.08" width="0.0">
+                                 <color>
+                                    <Color opacity="0.30534350872039795" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" styleClass="answer" text="2" textAlignment="CENTER" textFill="#3d3d3d" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                           <font>
+                              <Font name="Roboto Black" size="25.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="14.32" offsetY="1.0" radius="3.08" width="0.0">
+                                 <color>
+                                    <Color opacity="0.30534350872039795" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <ProgressBar fx:id="timerBar" prefHeight="15.0" prefWidth="224.0" progress="1.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></ProgressBar>
+                  <VBox prefHeight="64.0" prefWidth="247.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="361.0" text="Score:" textAlignment="CENTER" textFill="#7c7c7c">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="scoreLbl" alignment="CENTER" prefHeight="36.0" prefWidth="361.0" text="0" textFill="#3d3d3d">
+                           <font>
+                              <Font name="Roboto Black" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
                <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets />
                </VBox.margin>
-            </GridPane>
-            <VBox prefHeight="64.0" prefWidth="247.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="361.0" text="Score:" textAlignment="CENTER" textFill="#7c7c7c">
-                     <font>
-                        <Font name="Roboto" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="scoreLbl" alignment="CENTER" prefHeight="36.0" prefWidth="361.0" text="0">
-                     <font>
-                        <Font name="Roboto Bold" size="25.0" />
-                     </font>
-                  </Label>
-               </children>
             </VBox>
          </children>
-         <padding>
-            <Insets left="30.0" right="30.0" />
-         </padding>
          <effect>
             <DropShadow height="50.0" offsetY="10.0" radius="12.0" width="0.0">
                <color>
@@ -117,42 +132,63 @@
             </DropShadow>
          </effect>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="770.0" layoutY="111.0" prefHeight="255.0" prefWidth="230.0" styleClass="game-border">
+      <VBox alignment="TOP_CENTER" layoutX="717.0" layoutY="118.0" prefHeight="264.0" prefWidth="222.0" styleClass="game-border">
          <children>
-            <Label alignment="CENTER" blendMode="SRC_ATOP" prefHeight="68.0" prefWidth="246.0" styleClass="heading-label" text="Abilities" textFill="WHITE">
+            <Label alignment="CENTER" blendMode="SRC_ATOP" prefHeight="71.0" prefWidth="247.0" styleClass="heading-label" text="Abilities" textFill="WHITE">
                <font>
-                  <Font name="Roboto Black" size="29.0" />
+                  <Font name="Roboto Black" size="32.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
+               <effect>
+                  <DropShadow height="26.13" offsetY="4.0" radius="6.0325" width="0.0">
+                     <color>
+                        <Color opacity="0.07633586972951889" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#splitAnswersAndDecreaseScore" prefHeight="46.0" prefWidth="119.0" styleClass="answer" text="50/50" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#splitAnswersAndDecreaseScore" prefHeight="46.0" prefWidth="100.0" styleClass="answer" text="-1" textAlignment="RIGHT" textFill="#3d3d3d" textOverrun="CENTER_ELLIPSIS">
                <font>
-                  <Font name="Roboto Bold" size="25.0" />
+                  <Font name="Roboto Black" size="21.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="30.0" />
                </VBox.margin>
                <effect>
-                  <DropShadow height="24.31" offsetY="2.0" radius="5.5775" width="0.0">
+                  <DropShadow height="1.0" offsetY="3.0" radius="0.0" width="0.0">
                      <color>
-                        <Color opacity="0.16030533611774445" />
+                        <Color opacity="0.09923664480447769" />
                      </color>
                   </DropShadow>
                </effect>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/split.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#increaseTimeAndDecreaseScore" prefHeight="46.0" prefWidth="119.0" styleClass="answer" text="TIME" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#increaseTimeAndDecreaseScore" prefHeight="46.0" prefWidth="100.0" styleClass="answer" text="-1" textAlignment="CENTER" textFill="#3d3d3d" textOverrun="CENTER_ELLIPSIS">
                <font>
-                  <Font name="Roboto Bold" size="25.0" />
+                  <Font name="Roboto Black" size="21.0" />
                </font>
                <effect>
-                  <DropShadow height="24.31" offsetY="2.0" radius="5.5775" width="0.0">
+                  <DropShadow height="1.0" offsetY="3.0" radius="0.0" width="0.0">
                      <color>
-                        <Color opacity="0.16030533611774445" />
+                        <Color opacity="0.09923664480447769" />
                      </color>
                   </DropShadow>
                </effect>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/timer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
          <effect>
@@ -163,36 +199,74 @@
             </DropShadow>
          </effect>
       </VBox>
-      <HBox alignment="TOP_CENTER" layoutX="27.0" layoutY="23.0" prefHeight="58.0" prefWidth="230.0">
+      <VBox layoutX="52.0" layoutY="118.0" prefHeight="205.0" prefWidth="222.0" styleClass="game-border">
          <children>
-            <ImageView fitHeight="60.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/user.png" />
-               </image>
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </ImageView>
-            <VBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="168.0">
+            <Label alignment="CENTER" blendMode="SRC_ATOP" prefHeight="71.0" prefWidth="222.0" styleClass="heading-label" text="Player" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Black" size="32.0" />
+               </font>
+               <effect>
+                  <DropShadow height="26.13" offsetY="4.0" radius="6.0325" width="0.0">
+                     <color>
+                        <Color opacity="0.07633586972951889" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="117.0" prefWidth="250.0">
                <children>
-                  <Label fx:id="usernameLbl" prefHeight="29.0" prefWidth="166.0" text="Username" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="userHighscoreLbl" contentDisplay="CENTER" prefHeight="23.0" prefWidth="173.0" text="15" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto Bold" size="16.0" />
-                     </font>
-                  </Label>
+                  <TextFlow prefHeight="58.0" prefWidth="93.0">
+                     <children>
+                        <Label fx:id="usernameLbl1" prefHeight="29.0" prefWidth="82.0" text="Username:" textAlignment="CENTER" textFill="#3d3d3d">
+                           <font>
+                              <Font name="Roboto" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usernameLbl" prefHeight="29.0" prefWidth="99.0" text="test" textAlignment="CENTER" textFill="#3d3d3d">
+                           <font>
+                              <Font name="Roboto Black" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </TextFlow>
+                  <TextFlow prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="82.0" text="Highscore:" textAlignment="CENTER" textFill="#3d3d3d">
+                           <font>
+                              <Font name="Roboto" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="userHighscoreLbl" contentDisplay="CENTER" prefHeight="28.0" prefWidth="100.0" text="15" textAlignment="CENTER" textFill="#3d3d3d">
+                           <font>
+                              <Font name="Roboto Black" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </TextFlow>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
             </VBox>
          </children>
-      </HBox>
+      </VBox>
       <Button layoutX="27.0" layoutY="583.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loseGame" prefHeight="15.0" prefWidth="31.0" styleClass="navigation-btn" text="&lt;">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
+         <effect>
+            <DropShadow offsetY="4.0" radius="4.75" width="0.0">
+               <color>
+                  <Color opacity="0.24045801162719727" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
    </children>
 </AnchorPane>

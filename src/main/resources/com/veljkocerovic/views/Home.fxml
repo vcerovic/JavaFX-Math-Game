@@ -9,13 +9,13 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="594.0" prefWidth="858.0" styleClass="anchor-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.HomeController">
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" styleClass="anchor-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.veljkocerovic.controllers.HomeController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="170.0" layoutY="135.0" prefHeight="459.0" prefWidth="518.0">
+      <VBox alignment="TOP_CENTER" layoutX="241.0" layoutY="159.0" prefHeight="477.0" prefWidth="518.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="87.0" prefWidth="552.0" text="MATH GAME" textFill="WHITE">
                <font>
-                  <Font name="Roboto Black" size="71.0" />
+                  <Font name="Roboto Black" size="84.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="30.0" />
@@ -32,7 +32,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#switchToOptionsScene" styleClass="ability" text="PLAY">
                      <font>
-                        <Font name="Roboto Bold" size="18.0" />
+                        <Font name="Roboto Black" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="20.0" />
@@ -47,7 +47,7 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#switchToLeaderboardsScene" styleClass="ability" text="LEADERBOARD">
                      <font>
-                        <Font name="Roboto Bold" size="18.0" />
+                        <Font name="Roboto Black" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="20.0" />
@@ -62,7 +62,7 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#quitGame" styleClass="ability" text="QUIT">
                      <font>
-                        <Font name="Roboto Bold" size="18.0" />
+                        <Font name="Roboto Black" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="20.0" />
