@@ -13,7 +13,6 @@ public class HibernateUtils {
     public static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration();
 
-        configuration.configure("com/veljkocerovic/hibernate.cfg.xml");
         configuration.addAnnotatedClass(User.class).configure();
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
