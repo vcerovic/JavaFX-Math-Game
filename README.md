@@ -40,7 +40,7 @@ Both of these options cost 1 point.
 
 ## <a name="Guide"></a> User guide
 1. You need to execute a script for creating the database that is in the file `mysql/math_game_db.sql`
-2. Modify the database connection configuration to suit your settings. All settings can be found in the file `src/main/resources/com/veljkocerovic/hibernate.cfg.xml`. 
+2. Modify the database connection configuration to suit your settings. All settings can be found in the file `src/main/resources/hibernate.cfg.xml`. 
 3. Finally, you can start application by running maven command `mvn javafx:run`.
 
 
