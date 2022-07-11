@@ -1,5 +1,6 @@
 package com.veljkocerovic.database;
 
+import com.veljkocerovic.exceptions.UsernameAlreadyExistsException;
 import com.veljkocerovic.models.User;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public class UserDAO {
             } else {
                 String msg = "User with username: " + user.getUsername() + " already exists";
                 AlertUtils.showAlertMessage(msg, Alert.AlertType.ERROR);
-                throw new RuntimeException(msg);
+                throw new UsernameAlreadyExistsException(msg);
             }
             tx.commit();
         } catch (Exception e) {
@@ -131,7 +132,7 @@ public class UserDAO {
     public static void changeUsername(int id, User newUser) {
         if(getUserByUsername(newUser.getUsername()).isPresent()){
             AlertUtils.showAlertMessage("That username is already taken", Alert.AlertType.ERROR);
-            throw new RuntimeException("That username is already taken");
+            throw new UsernameAlreadyExistsException("That username is already taken");
         }
 
         updateUser(id, newUser);

@@ -1,16 +1,19 @@
 package com.veljkocerovic.controllers;
 
 import com.veljkocerovic.database.UserDAO;
+import com.veljkocerovic.exceptions.UserNotFoundException;
 import com.veljkocerovic.models.Difficulty;
 import com.veljkocerovic.models.GameManager;
 import com.veljkocerovic.models.User;
 import com.veljkocerovic.models.UserSession;
-import com.veljkocerovic.utils.AlertUtils;
 import com.veljkocerovic.utils.ValidationUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +56,7 @@ public class OptionsController {
         } else {
             //Play as selected user
             Optional<User> optionalUser = UserDAO.getUserByUsername(userChoiceBox.getValue().trim().toLowerCase());
-            User user = optionalUser.orElseThrow(() -> new RuntimeException("No user found with that username"));
+            User user = optionalUser.orElseThrow(() -> new UserNotFoundException("No user found with that username"));
             success = true;
 
             //Set selected user as active
